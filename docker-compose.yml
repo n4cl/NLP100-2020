@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  nlp100:
+    build:
+      context: ./
+    environment:
+      - MECABRC=/etc/mecabrc
+    volumes:
+      - ./:/usr/local/nlp
+    container_name: nlp100
+    tty: true
