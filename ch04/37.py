@@ -31,6 +31,9 @@ def draw(counter):
     w, v = zip(*counter.most_common(10))
     plt.bar(x=w, height=v)
     plt.ylim(0, 500)
+    plt.title("「猫」と共起頻度の高い上位10語")
+    plt.xlabel("単語")
+    plt.ylabel("出現頻度")
     plt.savefig("ch04/37.png")
 
 run()

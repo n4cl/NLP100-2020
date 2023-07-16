@@ -32,6 +32,7 @@ def draw(counter):
     x = [v for v in f.values()]
     plt.hist(x=x, bins=100)
     plt.xlim(0, max_x_value)
+    plt.title("単語の出現頻度")
     plt.xlabel("出現頻度")
     plt.ylabel("単語の異なり数")
     plt.savefig("ch04/38.png")
