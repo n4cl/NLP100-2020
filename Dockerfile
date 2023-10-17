@@ -1,6 +1,6 @@
 FROM python:3.11.4-buster
 
-RUN apt-get -y update && apt-get -y install mecab libmecab-dev git make curl xz-utils file sudo
+RUN apt-get -y update && apt-get -y install mecab libmecab-dev git make curl xz-utils file sudo wget
 COPY ./requirements.txt /tmp/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
