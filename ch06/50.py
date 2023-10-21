@@ -10,6 +10,9 @@ news.columns = ['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAM
 specific_news = news[news['PUBLISHER'].isin(
     ['Reuters', 'Huffington Post', 'Businessweek', 'Contactmusic.com', 'Daily Mail'])]
 
+# TITLEとCATEGORYの列のみを抽出する
+specific_news = specific_news[['TITLE', 'CATEGORY']]
+
 # データをシャッフルする
 # q: このrandom_stateは何？
 # a: 乱数のシード値。同じ値を指定すると、同じ乱数が生成される。
@@ -19,10 +22,11 @@ specific_news = specific_news.sample(frac=1, random_state=0)
 
 
 # データを学習用と評価用に分割する
-train_data, valid_data = train_test_split(specific_news, test_size=0.2, random_state=0)
+# stratify: ラベルの比率を維持する
+train_data, valid_data = train_test_split(specific_news, test_size=0.2, random_state=0, stratify=specific_news['CATEGORY'])
 
 # 評価用データを評価用とテスト用に分割する
-valid_data, test_data = train_test_split(valid_data, test_size=0.5, random_state=0)
+valid_data, test_data = train_test_split(valid_data, test_size=0.5, random_state=0, stratify=valid_data['CATEGORY'])
 
 # データの保存
 train_data.to_csv(cdir + '/train.txt', sep='\t', index=False)
